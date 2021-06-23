@@ -39,10 +39,12 @@ public class StateController implements CrudController<State,Integer>{
         return ResponseEntity.ok(service.read(entity,pageable));
     }
 
-    public ResponseEntity<State> readOne(@PathVariable("id") Integer primaryKey) {
+    @Override
+    public ResponseEntity<State> readOne(@RequestParam("id") Integer primaryKey) {
         return ResponseEntity.ok(service.readOne(primaryKey));
     }
-    
+
+    @Override
     public void delete(Integer primaryKey) {
         service.delete(primaryKey);
     }

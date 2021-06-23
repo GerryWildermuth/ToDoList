@@ -40,6 +40,7 @@ public class StepController implements CrudController<Step,Integer>{
     }
 
     @Override
+    @GetMapping("readOne/{id}")
     public ResponseEntity<Step> readOne(@PathVariable("id") Integer primaryKey) {
         return ResponseEntity.ok(service.readOne(primaryKey));
     }

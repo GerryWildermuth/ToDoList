@@ -20,6 +20,7 @@ public interface CrudController<O,P>{
 
     @PostMapping("find")
     ResponseEntity<Page<O>> read(O object, Integer page, Integer size);
+
     @GetMapping("{id}")
     ResponseEntity<O> readOne(P primaryKey);
 

@@ -39,6 +39,7 @@ public class StepControllerDTO implements CrudController<StepDTO,Integer>{
     }
 
     @Override
+    @GetMapping
     public ResponseEntity<Page<StepDTO>> read(
             @RequestBody StepDTO dto,
             @RequestParam("page") Integer page,
@@ -50,12 +51,14 @@ public class StepControllerDTO implements CrudController<StepDTO,Integer>{
     }
 
     @Override
+    @GetMapping("readOne/{id}")
     public ResponseEntity<StepDTO> readOne(@PathVariable("id") Integer primaryKey) {
          Step entity = service.readOne(primaryKey);
          return ResponseEntity.ok(mapper.toDto(entity));
     }
 
     @Override
+    @PostMapping("delete/{id}")
     public void delete(Integer primaryKey) {
         service.delete(primaryKey);
     }

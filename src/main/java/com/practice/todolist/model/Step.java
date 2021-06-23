@@ -1,19 +1,21 @@
 package com.practice.todolist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
-/**
- * The persistent class for the steps database table.
- * 
- */
 @Entity
 @Table(name="steps")
 @NamedQuery(name="Step.findAll", query="SELECT s FROM Step s")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Step implements Serializable {
-	private static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -24,67 +26,17 @@ public class Step implements Serializable {
 
 	private String name;
 
-	@Column(name="order_in_todolist")
-	private int orderInTodolist;
+	@Column(name="order_in_list")
+	private int orderInList;
 
-	//bi-directional many-to-one association to Todolist
-	@ManyToOne
-	private Todolist todolist;
+	//bi-directional many-to-one association to list
+	@JoinColumn(name = "list_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Listed listed;
 
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="step")
-	private List<Task> tasks;
-
-	public Step() {
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getOrderInTodolist() {
-		return this.orderInTodolist;
-	}
-
-	public void setOrderInTodolist(int orderInTodolist) {
-		this.orderInTodolist = orderInTodolist;
-	}
-
-	public Todolist getTodolist() {
-		return this.todolist;
-	}
-
-	public void setTodolist(Todolist todolist) {
-		this.todolist = todolist;
-	}
-
-	public List<Task> getTasks() {
-		return this.tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
+	private java.util.List tasks;
 
 	public Task addTask(Task task) {
 		getTasks().add(task);
@@ -99,5 +51,4 @@ public class Step implements Serializable {
 
 		return task;
 	}
-
 }

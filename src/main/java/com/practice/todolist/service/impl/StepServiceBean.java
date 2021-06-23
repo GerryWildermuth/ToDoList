@@ -37,7 +37,7 @@ public class StepServiceBean implements StepService {
 
     @Override
     public Step readOne(Integer primaryKey) {
-        return repository.getById(primaryKey);
+        return repository.getById( primaryKey);
     }
 
     @Override

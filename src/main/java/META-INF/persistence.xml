@@ -4,6 +4,6 @@
 		<class>com.practice.todolist.model.State</class>
 		<class>com.practice.todolist.model.Step</class>
 		<class>com.practice.todolist.model.Task</class>
-		<class>com.practice.todolist.model.Todolist</class>
+		<class>com.practice.todolist.model.Listed</class>
 	</persistence-unit>
 </persistence>

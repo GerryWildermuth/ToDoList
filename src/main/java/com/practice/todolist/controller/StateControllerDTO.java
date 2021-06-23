@@ -22,19 +22,18 @@ public class StateControllerDTO implements CrudController<StateDTO,Integer>{
     @Autowired
     private StateService service;
 
-    
     private StateMapper mapper;
 
     @Override
     public ResponseEntity<StateDTO> create(@RequestBody StateDTO dto) {
-       State entity = mapper.toEntity(dto);
-       entity = service.create(entity);
-       return ResponseEntity.ok(mapper.toDto(entity));
+        State entity = mapper.toEntity(dto);
+        entity = service.create(entity);
+        return ResponseEntity.ok(mapper.toDto(entity));
     }
 
     @Override
     public ResponseEntity<StateDTO> update(@RequestBody StateDTO dto) {
-      State entity = mapper.toEntity(dto);
+       State entity = mapper.toEntity(dto);
        entity = service.update(entity);
        return ResponseEntity.ok(mapper.toDto(entity));
     }
@@ -60,4 +59,5 @@ public class StateControllerDTO implements CrudController<StateDTO,Integer>{
     public void delete(Integer primaryKey) {
         service.delete(primaryKey);
     }
+
 }

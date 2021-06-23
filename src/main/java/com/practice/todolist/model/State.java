@@ -1,17 +1,21 @@
 package com.practice.todolist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
 
-/**
- * The persistent class for the states database table.
- * 
- */
+
 @Entity
 @Table(name="states")
 @NamedQuery(name="State.findAll", query="SELECT s FROM State s")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class State implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,25 +26,6 @@ public class State implements Serializable {
 	//bi-directional many-to-one association to Task
 	@OneToMany(mappedBy="stateBean")
 	private List<Task> tasks;
-
-	public State() {
-	}
-
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public List<Task> getTasks() {
-		return this.tasks;
-	}
-
-	public void setTasks(List<Task> tasks) {
-		this.tasks = tasks;
-	}
 
 	public Task addTask(Task task) {
 		getTasks().add(task);
